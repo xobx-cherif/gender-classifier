@@ -1,9 +1,13 @@
+import numpy as np
 
 #importing SKlearn models
 from sklearn import tree
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn import svm
 from sklearn.svm import SVC
+
+#importing accuracy score
+from sklearn.metrics import accuracy_score
 
 #descisin tree calassifier
 treeClf = tree.DecisionTreeClassifier()
@@ -35,5 +39,25 @@ prediction.append(treeClf.predict([[190, 70, 43]]))
 prediction.append(knnClf.predict([[190, 70, 43]]))
 prediction.append(svmClf.predict([[190, 70, 43]]))
 
-
 print(prediction)
+
+#comparing the accuracy of the 3 classifiers
+
+
+treeClfPred = treeClf.predict(X)
+treeAcc = accuracy_score(Y, treeClfPred) * 100
+print('Accuracy for descision tree: {}'.format(treeAcc))
+
+
+knnPred = knnClf.predict(X)
+knnAcc = accuracy_score(Y, knnPred) * 100
+print('Accuracy for KNN: {}'.format(knnAcc))
+
+svmPred = svmClf.predict(X)
+svmAcc = accuracy_score(Y, svmPred) * 100
+print('Accuracy for SVM: {}'.format(svmAcc))
+
+# The best classifier from descisin tree, svm, KNN
+index = np.argmax([treeAcc, knnAcc, svmAcc])
+classifiers = {0: 'Descision tree', 1: 'KNN', 2: 'SVM'}
+print('Best gender classifier is {}'.format(classifiers[index]))
