@@ -18,9 +18,9 @@ The main.py script do the following.
  # Usage
  
  Just type the following on your terminal
- 
+ ```shell
  python main.py
- 
+ ```
  # Credit
  
  This code was made while watching Siraj videos on machine learning.
